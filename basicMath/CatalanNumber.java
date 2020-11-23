@@ -17,7 +17,7 @@ public class CatalanNumber {
 		}System.out.println();
 		sc.close();
 	}
-	public static long catalanRec(int n) {
+	public static long catalanRec(int n) {//exponential time
 		if(n<=1) return 1;
 		long result=0;
 		for(int i=0;i<n;i++) {
@@ -26,9 +26,10 @@ public class CatalanNumber {
 		}
 		return result;
 	}
-	public static long catalanDynam(int n,long[] mem) {
+	public static long catalanDynam(int n,long[] mem) { //O(n^2)
 		mem[0]=1;
 		mem[1]=1;
+		// mem[n]=mem[0]*mem[n-1]+mem[1]*mem[n-2]+......+mem[n-1]*mem[0];
 		for(int i=2;i<=n;i++) {
 			mem[i]=0;
 			for(int j=0;j<i;j++) {
