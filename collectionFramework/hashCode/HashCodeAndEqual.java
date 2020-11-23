@@ -26,6 +26,7 @@ public class HashCodeAndEqual {
 		 * if two objects are equal , then they must have same hash code
 		 * vice versa is not true
 		 * */
+		/*hashCode()->function()->position() in long, used in hash map*/
 		Set<Number> numSet=new HashSet<>();
 		numSet.add(new Number("one",1));
 		numSet.add(new Number("two",2));
