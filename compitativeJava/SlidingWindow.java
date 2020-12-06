@@ -18,12 +18,14 @@ public class SlidingWindow {
 		int[] result=new int[len-k+1];
 		//for the starting window
 		int i=0;
+		//for first slide i goes from start to end of the slide
 		for(;i<k;i++) {
 			while(!dq.isEmpty() && arr[dq.peekLast()]<=arr[i]) {
 				dq.pollLast();
 			}
 			dq.addLast(i);
 		}
+		//i remains at the end position of each slide
 		//for remaining elements
 		for(;i<len;i++) {
 			result[i-k]=arr[dq.peekFirst()];
