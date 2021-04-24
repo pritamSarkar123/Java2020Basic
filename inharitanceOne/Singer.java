@@ -3,7 +3,6 @@ package inharitanceOne;
 import inharitanceOne.another.Person;
 
 public class Singer extends Person{
-	public Singer() {}
 	public Singer(String name) {
 		super(name);
 	}

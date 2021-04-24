@@ -2,6 +2,8 @@ package inharitanceOne;
 
 import inharitanceOne.another.Person;
 public class MainClass {
+	// this(param1,param2) calls the consturctor with param1 and param2 type parameter
+	// super() calls the super class constructor
 
 	public static void main(String[] args) {
 		Teacher t1=new Teacher("Pritam");

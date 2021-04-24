@@ -2,6 +2,7 @@ package collectionFramework.arrayList;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+
 import java.util.Iterator;
 import java.util.Collections;
 public class MainClass {
@@ -66,6 +67,7 @@ public class MainClass {
 		System.out.println(listTwo.isEmpty());
 		System.out.println(listTwo.size());
 		methOne();
+		methTwo();
 	}
 	public static void methOne() {
 		List<Integer> li=new LinkedList<>();
@@ -90,5 +92,28 @@ public class MainClass {
 		
 		Collections.sort(ai,Collections.reverseOrder());
 		System.out.println(ai);
+	}
+	public static void methTwo() {
+		List<Integer> li=new LinkedList<>();
+		List<Integer> ai=new ArrayList<>();
+		for(int i=10;i>0;i--) {
+			li.add(i);ai.add(i);
+		}
+		ai.addAll(li);
+		System.out.println("----------------");
+		//one method
+		Object []obj1=ai.toArray();
+		for(Object o:obj1) {
+			System.out.print(o+" ");
+		}System.out.println();
+		System.out.println("----------------");
+		//two method
+		Integer []obj2=new Integer[ai.size()];
+		ai.toArray(obj2);
+		for(Integer i:obj2) {
+			System.out.print(i+" ");
+		}System.out.println();
+		System.out.println("----------------");
+		System.out.println(ai instanceof ArrayList);
 	}
 }

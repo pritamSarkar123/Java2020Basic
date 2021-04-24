@@ -15,20 +15,22 @@ class BracketMatch {
 		    boolean balanced=true;
 		    for(int i=0;i<s.length();i++){
 		        c=s.charAt(i);
+		        // if open bracket then simply push
 		        if(c=='(' || c=='{' || c=='[') stack.push(c);
-		        else if(stack.isEmpty()){
+		        // if closing bracket comes but stack is empty
+		        else if((c==')' || c=='}' || c==']') && stack.isEmpty()){
 		            balanced=false; break;
-		        }else if(c=='}'){
+		        }else if(c=='}'){ //if closing bracket and same opening in stack top then ok otherwise not
 		            if(stack.peek()=='{') stack.pop();
 		            else{
 		                balanced=false;break;
 		            }
-		        }else if(c==']'){
+		        }else if(c==']'){//if closing bracket and same opening in stack top then ok otherwise not
 		            if(stack.peek()=='[') stack.pop();
 		            else{
 		                balanced=false;break;
 		            }
-		        }else if(c==')'){
+		        }else if(c==')'){ //if closing bracket and same opening in stack top then ok otherwise not
 		            if(stack.peek()=='(') stack.pop();
 		            else{
 		                balanced=false;break;
