@@ -2,10 +2,38 @@ package greedy;
 
 import java.util.Comparator;
 import java.util.PriorityQueue;
-
-
+/*
+ * we can use Item as inner class or outer class
+ * but when we have to pass the obj of inner class to some another class
+ * then with out making it static inner it is not possible better to use outer 
+ */
+/*if--------------------------------->
+ * class Item{
+		private int weight;
+		private int profit;
+		private double profitPerWeight;
+		public Item(int weight,int profit,double profitPerWeight) {
+			this.weight=weight;this.profit=profit;this.profitPerWeight=profitPerWeight;
+		}
+		public int getWeight() {
+			return weight;
+		}
+		public int getProfit() {
+			return profit;
+		}
+		public double getProfitPerWeight() {
+			return profitPerWeight;
+		}
+	}
+ *then---------------------------------->
+ *PriorityQueue<Item> pq=new PriorityQueue<>(Comparator.comparing(Item::getProfitPerWeight).reversed());
+	for(int i=0;i<weights.length;i++) {
+	pq.add(new Item(weights[i],profits[i],(double)profits[i]/(double)weights[i]));
+	}
+ * */
 public class ZeroOneKnapSackGreedy {
 	private static class Item{
+		//why private? because it is closely related and only used in inside the outer class
 		private int weight;
 		private int profit;
 		private double profitPerWeight;
@@ -29,7 +57,9 @@ public class ZeroOneKnapSackGreedy {
 		zeroOne(weights,profits,bagSize);
 	}
 	public static void zeroOne(int []weights,int []profits,int bagSize) {
-		PriorityQueue<Item> pq=new PriorityQueue<>(Comparator.comparing(Item::getProfitPerWeight).reversed());
+		//OR
+		//PriorityQueue<Item> pq=new PriorityQueue<>(Comparator.comparing(Item::getProfitPerWeight).reversed());
+		PriorityQueue<ZeroOneKnapSackGreedy.Item> pq=new PriorityQueue<>(Comparator.comparing(ZeroOneKnapSackGreedy.Item::getProfitPerWeight).reversed());
 		for(int i=0;i<weights.length;i++) {
 			pq.add(new ZeroOneKnapSackGreedy.Item(weights[i],profits[i],(double)profits[i]/(double)weights[i]));
 		}

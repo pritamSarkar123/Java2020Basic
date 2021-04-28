@@ -2,24 +2,25 @@ package greedy;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.PriorityQueue;
-public class JobSequencingWithDeadLine {
-	private static class Job{
-		private int profit;
-		private int deadline;
-		private int jobId;
-		public Job(int profit,int deadline,int jobId) {
-			this.profit=profit;this.deadline=deadline;this.jobId=jobId;
-		}
-		public int getProfit() {
-			return profit;
-		}
-		public int getDeadline() {
-			return deadline;
-		}
-		public int getJobId() {
-			return jobId;
-		}
+//***********1st see the 0 1 knapsack greedy comments ***********
+class Job{
+	private int profit;
+	private int deadline;
+	private int jobId;
+	public Job(int profit,int deadline,int jobId) {
+		this.profit=profit;this.deadline=deadline;this.jobId=jobId;
 	}
+	public int getProfit() {
+		return profit;
+	}
+	public int getDeadline() {
+		return deadline;
+	}
+	public int getJobId() {
+		return jobId;
+	}
+}
+public class JobSequencingWithDeadLine {
 	public static void main(String[] args) {
 		int []profits= new int[]{35,30,25,20,15,12,5};
 		int []deadlines=new int[]{3,4,4,2,3,1,2};
@@ -34,7 +35,7 @@ public class JobSequencingWithDeadLine {
 		Arrays.fill(timeSlots,-1);
 		PriorityQueue<Job> pq=new PriorityQueue<>(Comparator.comparing(Job::getProfit).reversed());
 		for(int i=0;i<profits.length;i++) {
-			pq.add(new JobSequencingWithDeadLine.Job(profits[i],deadlines[i],i));
+			pq.add(new Job(profits[i],deadlines[i],i));
 		}
 		int maxProfit=0;
 		while(!pq.isEmpty()) {

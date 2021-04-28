@@ -67,12 +67,25 @@ public class LongestSubArraySum {
 		//https://www.geeksforgeeks.org/largest-sum-contiguous-subarray/
 		int []arr= {-1,4,-2,4,-1,3,5,-6};
 		int n=arr.length;
+		int start=0;
+		int end=0;
 		int maxSum=Integer.MIN_VALUE;
 		int currentSum=0;
 		for(int i=0;i<n;i++) {
 			currentSum+=arr[i];
-			if(currentSum > maxSum && currentSum>0) maxSum=currentSum;
-			else if(currentSum<0) currentSum=0; // discarding the prev sub array , as it leading to less value
+			if(currentSum > maxSum && currentSum>0) { 
+				maxSum=currentSum;
+				end=i;
+			}
+			else if(currentSum<0) {
+				currentSum=0; // discarding the prev sub array , as it leading to less value
+				start=i+1;
+			}
+		}
+		if(start<arr.length) {
+			for(int i=start;i<=end;i++) {
+				System.out.print(arr[i]+"->");
+			}System.out.println();
 		}
 		System.out.println("Maximum Sum = "+maxSum);
 	}
