@@ -141,51 +141,47 @@ class BinaryTree{
 		}
 		return null;
 	}
-	private BinaryTree.TreeNode findParentNode(int val){
+	private BinaryTree.TreeNode findNode(int val){
 		Deque<BinaryTree.TreeNode> dq=new LinkedList<>();
 		dq.add(root);
 		while(!dq.isEmpty()) {
 			BinaryTree.TreeNode node=dq.pollFirst();
-			if(node.left!=null && node.left.val==val) return node;
-			if(node.right!=null && node.right.val==val) return node;
+			if(node.val==val) return node;
 			if(node.left!=null) dq.add(node.left);
 			if(node.right!=null) dq.add(node.right);
 		}
 		return null;
 	}
-	public void deleteNodeOfValue(int val) {
-		BinaryTree.TreeNode parentNode=findParentNode(val);
-		if(parentNode==null) return;
-		System.out.println("Parent -> "+parentNode.val);
-		deleteNode(parentNode,val);
+	private int getHeight(BinaryTree.TreeNode root) {
+		if(root==null) return 0;
+		return Math.max(getHeight(root.left),getHeight(root.right))+1;
 	}
-	private void deleteNode(BinaryTree.TreeNode parentNode,int val) {
-		BinaryTree.TreeNode node;
-		if(parentNode.left!=null && parentNode.left.val==val) {
-			node=parentNode.left;
-			if(node.left==null && node.right==null) {
-				parentNode.left=null;
-			}else if(node.left!=null && node.right==null) {
-				parentNode.left=node.left;
-			}else if(node.left==null && node.right!=null) {
-				parentNode.left=node.right;
-			}else {
-				node.val=node.left.val;
-				deleteNode(node,node.val);
-			}
-		}else if(parentNode.right!=null && parentNode.right.val==val) {
-			node=parentNode.right;
-			if(node.left==null && node.right==null) {
-				parentNode.right=null;
-			}else if(node.left!=null && node.right==null) {
-				parentNode.right=node.left;
-			}else if(node.left==null && node.right!=null) {
-				parentNode.right=node.right;
-			}else {
-				node.val=node.left.val;
-				deleteNode(node,node.val);
+	public void deleteNodeOfValue(int val) {
+		if(root==null) return;
+		root=deleteRec(root,val);
+	}
+	private BinaryTree.TreeNode deleteRec(BinaryTree.TreeNode root,int val) {
+		if(root==null) return null;
+		else if(root.val!=val){
+			root.left=deleteRec(root.left,val);
+			root.right=deleteRec(root.right,val);
+		}
+		else {
+			if(root.left==null) return root.right;
+			else if(root.right==null) return root.left;
+			else {
+				int lh=getHeight(root.left);
+				int rh=getHeight(root.right);
+				if(lh>rh) {
+					root.val=root.left.val;
+					root.left=deleteRec(root.left,root.val);
+				}else {
+					root.val=root.right.val;
+					root.right=deleteRec(root.right, val);
+				}
 			}
 		}
+		return root;
 	}
 	public void checkLevels() {
 		Deque<BinaryTree.TreeNode> dq=new LinkedList<>();
