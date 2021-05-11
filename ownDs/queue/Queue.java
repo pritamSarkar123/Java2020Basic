@@ -1,6 +1,6 @@
 package ownDs.queue;
 
-public class Queue<E> {
+public class Queue<E extends Comparable<E>> {
 	private LinkedList<E> ll;
 	public Queue() {
 		ll=new LinkedList<>();

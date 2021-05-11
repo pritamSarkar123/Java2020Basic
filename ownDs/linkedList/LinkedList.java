@@ -1,8 +1,8 @@
 package ownDs.linkedList;
 
-public class LinkedList<E> {
+public class LinkedList<E extends Comparable<E>> {
 	
-	private class Node<V>{
+	private class Node<V extends Comparable<V>>{
 		public V value;
 		public Node<V> next;
 		public Node<V> prev;

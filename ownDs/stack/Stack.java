@@ -1,6 +1,6 @@
 package ownDs.stack;
 
-public class Stack<E> {
+public class Stack<E  extends Comparable<E>> {
 	private LinkedList<E> ll;
 	public Stack() {
 		ll=new LinkedList<>();
